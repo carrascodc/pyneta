@@ -1,0 +1,2 @@
+# pyneta
+Python Kirk Course
