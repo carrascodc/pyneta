@@ -1,4 +1,6 @@
 # pyneta
 Python Kirk Course
 
-Test - Make changes in the master branch first, and see the sync break on the remote repository
+This is my humble attempts in completing the Python Kirk Course Questions
+
+
