@@ -1,0 +1,11 @@
+Value DEVICEID (\S+)
+Value LOCALINT (\S+)
+Value CAPABILITY (\S+)
+Value PORTID (\S+)
+
+Start
+  ^Capability.*$$ -> ShowLLDPneighbors
+  
+ShowLLDPneighbors
+#  ^${DEVICEID}\s+${LOCALINT}\s+\d+${CAPABILITY}\s+{PORTID}\s.$$ -> Record
+  ^${DEVICEID}\s+${LOCALINT}\s+\d+\s+${CAPABILITY}\s+${PORTID}.*$$ -> Record

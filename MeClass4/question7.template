@@ -1,0 +1,12 @@
+Value DUPLEX (auto|full|half)
+Value PORT_NAME (\S+)
+Value PORT_TYPE (\S+)
+Value SPEED (auto|10|100|1000|a-10|a-100|a-1000)
+Value STATUS (notconnect|connected|disabled|err-disabled)
+Value VLAN (\d+)
+
+Start
+  ^Port.*Type
+  ^${PORT_NAME}\s+${STATUS}\s+${VLAN}\s+${DUPLEX}\s+${SPEED}\s+${PORT_TYPE}$$ -> Record
+
+EOF

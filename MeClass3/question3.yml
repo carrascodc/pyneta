@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+import yaml
+import json
+
+list_ipv4 = []
+list_ipv6 = []
+
+filename = "jsondata3.txt"
+with open(filename) as f:
+#    info_dict = yaml.load(f)
+    info_dict = json.load(f)
+
+
+for key, value in info_dict.items():
+    for x, y in value.items():
+        if x == 'ipv4':
+            for a in y.items():
+                list_ipv4.append(a[0]+'/'+str(a[1]['prefix_length']))
+        if x == 'ipv6':
+            for a in y.items():
+                list_ipv6.append(a[0]+'/'+str(a[1]['prefix_length']))
+
+print(list_ipv4)
+print()
+print(list_ipv6)

@@ -1,36 +1,25 @@
 #!/usr/bin/env python
 
-import json
-from ciscoconfparse import CiscoConfParse
+from pprint import pprint
+import textfsm
 
-bgp_peers = []
+template_file = "question7.template"
+template = open(template_file)
 
-CONFIG = '''
-router bgp 44
- bgp router-id 10.220.88.38
- address-family ipv4 unicast
- !
- neighbor 10.220.88.20
-  remote-as 42
-  description pynet-rtr1
-  address-family ipv4 unicast
-   route-policy ALLOW in
-   route-policy ALLOW out
-  !
- !
- neighbor 10.220.88.32
-  remote-as 43
-  address-family ipv4 unicast
-   route-policy ALLOW in
-   route-policy ALLOW out
-'''
+with open("question1.txt") as f:
+    raw_text_data = f.read()
 
-parse = CiscoConfParse(CONFIG.splitlines())
+# The argument 'template' is a file handle and 'raw_text_data' is a string.
+re_table = textfsm.TextFSM(template)
+data = re_table.ParseText(raw_text_data)
+template.close()
 
-for obj in parse.find_objects(r'neighbor'):
-    neighbor_ip = obj.re_match(r'neighbor\s(\S+)')
-    remote_as = obj.children[0].re_match(r'remote-as\s(\S+)')
-    bgp_peers.append((neighbor_ip,remote_as))
+print("\nPrint the header row which could be used for dictionary construction")
+print(re_table.header)
 
+answer = []
+for x in data:
+    answer.append({'DUPLEX': x[0], 'PORT_NAME': x[1], 'PORT_TYPE': x[2], 'SPEED': x[3], 'STATUS': x[4], 'VLAN': x[5]})
 
-print(bgp_peers)
+pprint(answer)
+

@@ -1,0 +1,18 @@
+Value INTNAME (\S+)
+Value LINE (\w+)
+Value STATE (\w+)
+Value MAC (([0-9a-fA-F]){4}.([0-9a-fA-F]){4}.([0-9a-fA-F]){4})
+Value MTU (\S+)
+Value DUPLEX (\S+)
+Value SPEED (\S+)
+
+Start
+  ^${INTNAME}\s+\w+\s+${LINE}\s*$$
+  ^\w+\s+\w+\s+\w+\s+${STATE}.*$$
+  ^.*address.\s${MAC}.*$$
+#  ^\s+MTU\s${MTU}.*$$ -> Record
+  ^\s+MTU\s${MTU}.*
+  ^\s+${DUPLEX}\-duplex,\s+${SPEED}.*$$ -> Record
+
+EOF
+

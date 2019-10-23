@@ -1,0 +1,13 @@
+Value Filldown ROUTERID ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})
+Value Filldown LOCALAS (\d+)
+Value NEIGHBOR ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})
+Value REMOTEAS (\d+)
+Value UPDOWN (\S+)
+Value PREFIXRCVD (\S+)
+
+Start
+  ^BGP router identifier ${ROUTERID}.*\s+${LOCALAS}$$ 
+  ^.*${NEIGHBOR}\s+\d+\s+${REMOTEAS}\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+${UPDOWN}\s+${PREFIXRCVD} -> Record
+
+EOF
+

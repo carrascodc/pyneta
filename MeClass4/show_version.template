@@ -1,0 +1,11 @@
+Value MODEL (\S+)
+Value MEMORY (\d+K\/\d+K)
+Value SERIALNUM (\w+)
+Value CONFIGREG (0x\d+)
+
+Start
+  ^cisco ${MODEL}.*\s${MEMORY}
+  ^Processor board ID ${SERIALNUM}
+  ^Configuration register is ${CONFIGREG} -> Record
+
+EOF

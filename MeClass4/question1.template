@@ -1,0 +1,9 @@
+Value PORT (\S+)
+
+Start
+  ^Port.*$$ -> ShowIntStatus
+
+ShowIntStatus
+  ^${PORT}.*$$ -> Record
+
+EOF

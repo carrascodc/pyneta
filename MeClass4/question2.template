@@ -1,0 +1,16 @@
+Value PORT (\S+)
+Value STATUS (\S+)
+Value VLAN (\d+)
+Value DUPLEX (auto|full|half)
+Value SPEED (\S+)
+Value TYPE (\S+)
+
+Start
+  ^Port.*$$ -> ShowIntStatus
+
+ShowIntStatus
+#  ^${PORT}.*$$ -> Record
+  ^${PORT}\s+${STATUS}\s+${VLAN}\s+${DUPLEX}\s+${SPEED}\s+${TYPE} -> Record
+
+EOF
+
