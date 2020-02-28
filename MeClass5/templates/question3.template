@@ -1,0 +1,10 @@
+Value BGP_STATUS (([0-9]{2})+\:([0-9]{2})\:([0-9]{2}))
+Value BGP_STATE (\S+)
+
+Start
+  ^Neighbor.*PfxRcd\s*$$ -> BGPInfo
+
+BGPInfo
+  ^.*${BGP_STATUS}\s+${BGP_STATE}\s*$$ -> Record
+
+EOF

@@ -1,0 +1,7 @@
+interface Ethernet1/{{ interface }}
+  ip address {{ ip_address }}/{{ netmask }}
+
+router bgp 22
+  neighbor {{ peer_ip }} remote-as 22
+    address-family ipv4 unicast
+ 

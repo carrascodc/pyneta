@@ -1,0 +1,7 @@
+---
+eapi:
+    transport: "https"
+    username: "pyclass"
+    password: "88newclass"
+    port: "443"
+
